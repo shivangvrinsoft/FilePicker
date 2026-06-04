@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- App -->
+    <string name="app_name">FilePicker</string>
+
+    <!-- Hero Banner -->
+    <string name="hero_title">All-in-one media picker</string>
+    <string name="hero_subtitle">Select images, videos, and documents with ease</string>
+
+    <!-- Hero chips -->
+    <string name="chip_multi_select">Multi-select</string>
+    <string name="chip_mime_filter">MIME filter</string>
+    <string name="chip_jetpack">Jetpack</string>
+    <string name="chip_api23">API 23+</string>
+
+    <!-- Section labels -->
+    <string name="label_pick_source">Pick a source</string>
+    <string name="label_quick_actions">Quick actions</string>
+
+    <!-- Picker options -->
+    <string name="option_camera">Capture image</string>
+    <string name="option_camera_desc">Camera · front or rear</string>
+
+    <string name="option_video">Record video</string>
+    <string name="option_video_desc">Up to 60 sec, HD</string>
+
+    <string name="option_gallery">Gallery</string>
+    <string name="option_gallery_desc">Images &amp; videos</string>
+    <string name="option_gallery_badge">Multi</string>
+
+    <string name="option_documents">Documents</string>
+    <string name="option_documents_desc">PDF, DOCX, XLS…</string>
+
+    <!-- Quick actions -->
+    <string name="qa_all_files">All files</string>
+    <string name="qa_all_files_desc">Pick from any source</string>
+
+    <string name="qa_settings">Config</string>
+    <string name="qa_settings_desc">Picker settings</string>
+
+    <string name="qa_recent">Recent</string>
+    <string name="qa_recent_desc">Previously picked files</string>
+
+    <string name="qa_permissions">Permissions</string>
+    <string name="qa_permissions_desc">Manage access</string>
+
+    <!-- CTA -->
+    <string name="btn_open_picker">Open picker</string>
+
+    <!-- Bottom nav -->
+    <string name="nav_home">Home</string>
+    <string name="nav_files">Files</string>
+    <string name="nav_recent">Recent</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_back">Navigate back</string>
+    <string name="cd_settings">Open settings</string>
+
+</resources>

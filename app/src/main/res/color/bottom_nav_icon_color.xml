@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    color/bottom_nav_icon_color.xml
+    Color state list for bottom navigation icon and label tint.
+    Selected state uses primary brand color; default uses muted gray.
+-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:color="@color/bottom_nav_selected"
+        android:state_checked="true" />
+    <item
+        android:color="@color/bottom_nav_unselected" />
+</selector>
