@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Large star / sparkle (centre) -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="?attr/colorOnPrimary"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M12,3 L13.5,8.5 L19,10 L13.5,11.5 L12,17 L10.5,11.5 L5,10 L10.5,8.5 Z" />
+
+    <!-- Small star (top-right) -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="?attr/colorOnPrimary"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M18,3 L18.75,5.25 L21,6 L18.75,6.75 L18,9 L17.25,6.75 L15,6 L17.25,5.25 Z" />
+
+    <!-- Tiny star (bottom-left) -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="?attr/colorOnPrimary"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M5,17 L5.6,18.9 L7.5,19.5 L5.6,20.1 L5,22 L4.4,20.1 L2.5,19.5 L4.4,18.9 Z" />
+
+</vector>

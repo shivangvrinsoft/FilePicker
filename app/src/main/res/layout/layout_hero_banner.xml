@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    layout_hero_banner.xml
+    Gradient-accent hero card shown at the top of the Home screen.
+    Uses a tonal surface colour to stay consistent across light/dark.
+-->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="0dp"
+    app:strokeWidth="0dp"
+    app:cardBackgroundColor="?attr/colorSecondaryContainer">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+        <!-- Icon badge -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvHeroIcon"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp"
+            app:cardBackgroundColor="?attr/colorPrimaryContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_file_upload"
+                android:importantForAccessibility="no"
+                app:tint="?attr/colorOnPrimaryContainer" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Title -->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvHeroTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:text="@string/hero_title"
+            style="@style/TextAppearance.Material3.TitleMedium"
+            android:textColor="?attr/colorOnSecondaryContainer"
+            app:layout_constraintStart_toEndOf="@id/cvHeroIcon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/cvHeroIcon" />
+
+        <!-- Subtitle -->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvHeroSubtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="2dp"
+            android:text="@string/hero_subtitle"
+            style="@style/TextAppearance.Material3.BodySmall"
+            android:textColor="?attr/colorOnSecondaryContainer"
+            android:alpha="0.75"
+            app:layout_constraintStart_toEndOf="@id/cvHeroIcon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvHeroTitle" />
+
+        <!-- Feature chips row -->
+        <HorizontalScrollView
+            android:id="@+id/chipScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:scrollbars="none"
+            app:layout_constraintTop_toBottomOf="@id/cvHeroIcon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingEnd="4dp"
+                android:gravity="center_vertical">
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="@string/chip_multi_select"
+                    style="@style/Widget.Material3.Chip.Assist"
+                    app:chipBackgroundColor="?attr/colorPrimaryContainer"
+                    app:chipStrokeWidth="0dp"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    app:chipStartPadding="8dp"
+                    app:chipEndPadding="8dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="6dp"
+                    android:text="@string/chip_mime_filter"
+                    style="@style/Widget.Material3.Chip.Assist"
+                    app:chipBackgroundColor="?attr/colorPrimaryContainer"
+                    app:chipStrokeWidth="0dp"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    app:chipStartPadding="8dp"
+                    app:chipEndPadding="8dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="6dp"
+                    android:text="@string/chip_jetpack"
+                    style="@style/Widget.Material3.Chip.Assist"
+                    app:chipBackgroundColor="?attr/colorPrimaryContainer"
+                    app:chipStrokeWidth="0dp"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    app:chipStartPadding="8dp"
+                    app:chipEndPadding="8dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="6dp"
+                    android:text="@string/chip_api23"
+                    style="@style/Widget.Material3.Chip.Assist"
+                    app:chipBackgroundColor="?attr/colorPrimaryContainer"
+                    app:chipStrokeWidth="0dp"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    app:chipStartPadding="8dp"
+                    app:chipEndPadding="8dp" />
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+_
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <!--  ── Seed color for Material 3 dynamic theming ──────────────────  -->
+    <!--  Set this as the seed in your Theme.YourApp in themes.xml         -->
+    <color name="md_seed">#185FA5</color>
+    <!--  ── Icon tints & backgrounds (per picker type) ─────────────────  -->
+    <!--  Camera / Image capture — Blue  -->
+    <color name="icon_bg_blue">#E6F1FB</color>
+    <color name="icon_tint_blue">#185FA5</color>
+    <!--  Video capture — Coral / Red-orange  -->
+    <color name="icon_bg_coral">#FAECE7</color>
+    <color name="icon_tint_coral">#993C1D</color>
+    <!--  Gallery — Teal / Green  -->
+    <color name="icon_bg_teal">#E1F5EE</color>
+    <color name="icon_tint_teal">#0F6E56</color>
+    <!--  Documents — Amber  -->
+    <color name="icon_bg_amber">#FAEEDA</color>
+    <color name="icon_tint_amber">#854F0B</color>
+    <!--  ── Quick-action card icon tints ───────────────────────────────  -->
+    <!--  All files — Purple  -->
+    <color name="qa_bg_purple">#EEEDFE</color>
+    <color name="qa_tint_purple">#534AB7</color>
+    <!--  Settings — Blue  -->
+    <color name="qa_bg_blue">#E6F1FB</color>
+    <color name="qa_tint_blue">#185FA5</color>
+    <!--  Recent — Green  -->
+    <color name="qa_bg_green">#EAF3DE</color>
+    <color name="qa_tint_green">#3B6D11</color>
+    <!--  Permissions — Amber  -->
+    <color name="qa_bg_amber">#FAEEDA</color>
+    <color name="qa_tint_amber">#854F0B</color>
+    <!--  ── Badge colors ────────────────────────────────────────────────  -->
+    <color name="badge_bg_new">#E1F5EE</color>
+    <color name="badge_text_new">#0F6E56</color>
+    <color name="badge_bg_required">#FAEEDA</color>
+    <color name="badge_text_required">#854F0B</color>
+    <!--  ── Bottom nav state colors ─────────────────────────────────────  -->
+    <color name="bottom_nav_selected">#185FA5</color>
+    <color name="bottom_nav_unselected">#888780</color>
+</resources>
