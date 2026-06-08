@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorSurface"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <!-- Top App Bar -->
     <com.google.android.material.appbar.AppBarLayout

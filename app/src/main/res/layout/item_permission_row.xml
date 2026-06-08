@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    item_permission_row.xml
+    A single permission row: icon · name · status chip · toggle switch.
+
+    Wire in PermissionsActivity:
+        ItemPermissionRowBinding.bind(binding.permCamera).apply {
+            ivPermIcon.setImageResource(R.drawable.ic_camera)
+            ivPermIcon.imageTintList = ColorStateList.valueOf(color(R.color.icon_tint_blue))
+            cvPermIconBg.setCardBackgroundColor(color(R.color.icon_bg_blue))
+            tvPermName.setText(R.string.perm_camera)
+            setPermissionState(this, isGranted)
+        }
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="64dp"
+    android:paddingHorizontal="14dp"
+    android:paddingVertical="12dp"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- Icon container -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvPermIconBg"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
+        app:strokeWidth="0dp"
+        tools:cardBackgroundColor="#E6F1FB"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/ivPermIcon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:importantForAccessibility="no"
+            tools:src="@drawable/ic_camera"
+            tools:tint="#185FA5" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Permission name -->
+    <TextView
+        android:id="@+id/tvPermName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="8dp"
+        tools:text="Camera access"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="?attr/colorOnSurface"
+        app:layout_constraintStart_toEndOf="@id/cvPermIconBg"
+        app:layout_constraintEnd_toStartOf="@id/tvPermStatus"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvPermDesc" />
+
+    <!-- Permission description -->
+    <TextView
+        android:id="@+id/tvPermDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="1dp"
+        tools:text="Required for capture"
+        style="@style/TextAppearance.Material3.BodySmall"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        app:layout_constraintStart_toEndOf="@id/cvPermIconBg"
+        app:layout_constraintEnd_toStartOf="@id/tvPermStatus"
+        app:layout_constraintTop_toBottomOf="@id/tvPermName"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- Granted / Denied status chip -->
+    <TextView
+        android:id="@+id/tvPermStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="3dp"
+        android:layout_marginEnd="10dp"
+        tools:text="Granted"
+        style="@style/TextAppearance.Material3.LabelSmall"
+        android:background="@drawable/bg_badge"
+        tools:textColor="#0F6E56"
+        tools:backgroundTint="#E1F5EE"
+        app:layout_constraintEnd_toStartOf="@id/switchPerm"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- Material switch toggle -->
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:id="@+id/switchPerm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
