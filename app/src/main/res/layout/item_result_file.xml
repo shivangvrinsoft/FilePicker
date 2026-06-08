@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="0dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="?attr/colorOutlineVariant"
+    app:cardBackgroundColor="?attr/colorSurface">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <!-- Square thumbnail / icon — 64×64 -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvFileThumbnail"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <!-- Actual image thumbnail (loaded via Coil) -->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivFileThumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                tools:visibility="visible"
+                tools:src="@drawable/placeholder" />
+
+            <!-- MIME type icon fallback (shown for documents) -->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivFileMimeIcon"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:importantForAccessibility="no"
+                android:visibility="gone"
+                tools:visibility="visible"
+                tools:src="@drawable/ic_file_text"
+                tools:tint="#854F0B" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- File name -->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvFileName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            style="@style/TextAppearance.Material3.BodyMedium"
+            android:textColor="?attr/colorOnSurface"
+            app:layout_constraintStart_toEndOf="@id/cvFileThumbnail"
+            app:layout_constraintEnd_toStartOf="@id/ivResultStatus"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tvFileMeta"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="mountain_photo.jpg" />
+
+        <!-- MIME + size -->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvFileMeta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="3dp"
+            style="@style/TextAppearance.Material3.BodySmall"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            app:layout_constraintStart_toEndOf="@id/cvFileThumbnail"
+            app:layout_constraintEnd_toStartOf="@id/ivResultStatus"
+            app:layout_constraintTop_toBottomOf="@id/tvFileName"
+            app:layout_constraintBottom_toTopOf="@id/tvFileDuration"
+            tools:text="2.4 MB · image/jpeg" />
+
+        <!-- Duration (videos only) -->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvFileDuration"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="3dp"
+            android:visibility="gone"
+            style="@style/TextAppearance.Material3.LabelSmall"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            app:layout_constraintStart_toEndOf="@id/cvFileThumbnail"
+            app:layout_constraintEnd_toStartOf="@id/ivResultStatus"
+            app:layout_constraintTop_toBottomOf="@id/tvFileMeta"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="▶ 0:32"
+            tools:visibility="visible" />
+
+        <!-- Remove button (tap to deselect) -->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivResultStatus"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_close"
+            android:importantForAccessibility="no"
+            android:alpha="0.5"
+            app:tint="?attr/colorOnSurface"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

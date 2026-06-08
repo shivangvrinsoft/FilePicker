@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    activity_permissions.xml
+    Screen 4 — Permissions toggles + selected file result cards.
+-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    tools:context=".activity.PermissionsActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        app:liftOnScroll="true"
+        app:liftOnScrollTargetViewId="@id/nestedScrollView">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="?attr/colorOnSurface"
+            app:title="@string/screen_permissions_title"
+            app:titleTextAppearance="@style/TextAppearance.Material3.TitleLarge" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="24dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp">
+
+            <!-- ── PERMISSIONS SECTION ──────────────────────────── -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/label_permissions"
+                android:textAllCaps="true"
+                android:letterSpacing="0.08"
+                style="@style/TextAppearance.Material3.LabelSmall"
+                android:textColor="?attr/colorOnSurfaceVariant" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardPermissions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="?attr/colorOutlineVariant"
+                app:cardBackgroundColor="?attr/colorSurface">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingVertical="4dp">
+
+                    <!-- Camera permission row -->
+                    <include
+                        android:id="@+id/permCamera"
+                        layout="@layout/item_permission_row" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:background="?attr/colorOutlineVariant" />
+
+                    <!-- Media Library permission row -->
+                    <include
+                        android:id="@+id/permMedia"
+                        layout="@layout/item_permission_row" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:background="?attr/colorOutlineVariant" />
+
+                    <!-- Storage Read permission row -->
+                    <include
+                        android:id="@+id/permStorage"
+                        layout="@layout/item_permission_row" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Permission rationale card (shown when any is denied) -->
+            <include
+                android:id="@+id/rationaleCard"
+                layout="@layout/layout_permission_rationale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:visibility="gone" />
+
+            <!-- ── SELECTED FILES SECTION ────────────────────────── -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/label_selected_files"
+                android:textAllCaps="true"
+                android:letterSpacing="0.08"
+                style="@style/TextAppearance.Material3.LabelSmall"
+                android:textColor="?attr/colorOnSurfaceVariant" />
+
+            <!-- Empty state (shown when no files selected) -->
+            <include
+                android:id="@+id/emptyState"
+                layout="@layout/layout_empty_state"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible" />
+
+            <!-- File result list -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvResultFiles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:visibility="gone"
+                tools:listitem="@layout/item_result_file"
+                tools:itemCount="3"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
