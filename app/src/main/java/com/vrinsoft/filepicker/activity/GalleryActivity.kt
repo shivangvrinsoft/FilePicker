@@ -36,6 +36,16 @@ class GalleryActivity : AppCompatActivity() {
         confirmBar = LayoutGalleryConfirmBarBinding.bind(binding.confirmBar.root)
         maxSelection = intent.getIntExtra(KEY_MAX_SELECTION, Int.MAX_VALUE)
 
+        // ── Restore pre-selected files passed from ResultsActivity ───────
+        val preSelected: ArrayList<ResultFileItem>? =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+                intent.getParcelableArrayListExtra(KEY_PRESELECTED_FILES, ResultFileItem::class.java)
+            else
+                @Suppress("DEPRECATION")
+                intent.getParcelableArrayListExtra(KEY_PRESELECTED_FILES)
+
+        preSelected?.let { selectedItems.addAll(it) }
+
         setupToolbar()
         setupGalleryGrid()
         setupFilterChips()
@@ -67,7 +77,10 @@ class GalleryActivity : AppCompatActivity() {
     private fun setupToolbar() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding.toolbar.setNavigationOnClickListener { finish() }
+        binding.toolbar.setNavigationOnClickListener {
+            setResult(RESULT_CANCELED)
+            finish()
+        }
     }
 
     // ── Gallery grid ─────────────────────────────────────────────────────
@@ -103,16 +116,14 @@ class GalleryActivity : AppCompatActivity() {
             updateConfirmBar()
         }
 
-        // ✅ CONFIRM → navigate to ResultsActivity with selected items
+        // ✅ Return selected files back to ResultsActivity via setResult
         confirmBar.btnConfirm.setOnClickListener {
             if (selectedItems.isNotEmpty()) {
-                val intent = Intent(this, ResultsActivity::class.java).apply {
-                    putParcelableArrayListExtra(
-                        ResultsActivity.KEY_SELECTED_FILES,
-                        ArrayList(selectedItems)
-                    )
+                val result = Intent().apply {
+                    putParcelableArrayListExtra(KEY_RESULT_FILES, ArrayList(selectedItems))
                 }
-                startActivity(intent)
+                setResult(RESULT_OK, result)
+                finish()
             }
         }
     }
@@ -148,6 +159,11 @@ class GalleryActivity : AppCompatActivity() {
         list.sortByDescending { it.dateAdded }
         Log.d(TAG, "loadMedia: total=${list.size}, filter=$filter")
         adapter.submitList(list)
+
+        // ✅ Re-apply pre-existing selections after list loads
+        if (selectedItems.isNotEmpty()) {
+            adapter.updateSelections(selectedItems.toList())
+        }
     }
 
     private fun queryImages(): List<ResultFileItem> {
@@ -229,8 +245,8 @@ class GalleryActivity : AppCompatActivity() {
         )
         val selection =
             "${MediaStore.Files.FileColumns.MEDIA_TYPE} = ${MediaStore.Files.FileColumns.MEDIA_TYPE_NONE}" +
-            " AND (${MediaStore.Files.FileColumns.MIME_TYPE} LIKE 'application/%'" +
-            " OR ${MediaStore.Files.FileColumns.MIME_TYPE} LIKE 'text/%')"
+                    " AND (${MediaStore.Files.FileColumns.MIME_TYPE} LIKE 'application/%'" +
+                    " OR ${MediaStore.Files.FileColumns.MIME_TYPE} LIKE 'text/%')"
         val result = mutableListOf<ResultFileItem>()
         contentResolver.query(collection, projection, selection, null,
             "${MediaStore.Files.FileColumns.DATE_ADDED} DESC")?.use { cursor ->
@@ -258,7 +274,9 @@ class GalleryActivity : AppCompatActivity() {
     enum class MediaFilter { ALL, IMAGES, VIDEOS, DOCUMENTS }
 
     companion object {
-        const val KEY_MAX_SELECTION = "key_max_selection"
+        const val KEY_MAX_SELECTION    = "key_max_selection"
+        const val KEY_PRESELECTED_FILES = "key_preselected_files"  // ✅ incoming pre-selection
+        const val KEY_RESULT_FILES      = "key_result_files"       // ✅ outgoing result
         private const val GRID_SPAN = 3
         private const val TAG = "GalleryActivity"
     }
