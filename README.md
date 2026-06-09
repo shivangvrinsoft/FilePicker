@@ -1,4 +1,5 @@
 # FilePicker
+[![](https://jitpack.io/v/shivangvrinsoft/FilePicker.svg)](https://jitpack.io/#shivangvrinsoft/FilePicker)
 
 A modern Android File Picker library built with Kotlin and Material 3, providing a clean and consistent experience for selecting files, images, videos, and documents on Android.
 
@@ -16,7 +17,7 @@ A modern Android File Picker library built with Kotlin and Material 3, providing
 
 ## Requirements
 
-- Android 8.0 (API 27) or higher
+- Android 8.1 (API 27) or higher
 - Kotlin support
 - AndroidX
 
