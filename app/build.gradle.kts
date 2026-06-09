@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.vrinsoft.filepicker"
+    namespace = "com.vrinsoft.filepickerdemo"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.vrinsoft.filepicker"
+        applicationId = "com.vrinsoft.filepickerdemo"
         minSdk = 27
         targetSdk = 36
         versionCode = 1
