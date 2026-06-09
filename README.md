@@ -40,7 +40,7 @@ dependencyResolutionManagement {
 
 ```kotlin
 dependencies {
-    implementation("com.github.shivangvrinsoft:FilePicker:v1.0.1")
+    implementation("com.github.shivangvrinsoft:FilePicker:v1.0.2")
 }
 ```
 
