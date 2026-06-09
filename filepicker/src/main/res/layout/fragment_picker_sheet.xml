@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    fragment_picker_sheet.xml
+    Inflated by PickerBottomSheetFragment (ModalBottomSheetDialogFragment).
+    Shows a 2×2 grid of source options + a Cancel button.
+
+    Usage:
+        val sheet = PickerBottomSheetFragment.newInstance()
+        sheet.show(supportFragmentManager, PickerBottomSheetFragment.TAG)
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="24dp"
+    android:background="@drawable/bg_bottom_sheet">
+
+    <!-- Drag handle -->
+    <View
+        android:layout_width="32dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/bg_sheet_handle" />
+
+    <!-- Sheet title -->
+    <TextView
+        android:id="@+id/tvSheetTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/sheet_title"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:textColor="?attr/colorOnSurface" />
+
+    <!-- 2×2 grid of source options -->
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="2"
+        android:paddingHorizontal="16dp"
+        android:useDefaultMargins="false">
+
+        <!-- Camera -->
+        <include
+            android:id="@+id/optionCamera"
+            layout="@layout/item_sheet_option"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="10dp" />
+
+        <!-- Video -->
+        <include
+            android:id="@+id/optionVideo"
+            layout="@layout/item_sheet_option"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_marginStart="6dp"
+            android:layout_marginBottom="10dp" />
+
+        <!-- Gallery -->
+        <include
+            android:id="@+id/optionGallery"
+            layout="@layout/item_sheet_option"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_marginEnd="6dp"
+            android:layout_marginTop="4dp" />
+
+        <!-- Document -->
+        <include
+            android:id="@+id/optionDocument"
+            layout="@layout/item_sheet_option"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="4dp" />
+
+    </GridLayout>
+
+    <!-- Cancel button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCancel"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/btn_cancel"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        app:cornerRadius="12dp" />
+
+</LinearLayout>
