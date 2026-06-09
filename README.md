@@ -46,23 +46,119 @@ dependencies {
 
 ## Usage
 
-### Open Gallery Picker
+### Step 1 — Create a `FilePickerDelegate` at class level
+
+The delegate must be initialized before the Activity is started. Use `by lazy` and touch it in `onCreate`.
 
 ```kotlin
-launchGalleryPicker()
+class YourActivity : AppCompatActivity() {
+
+    // Register delegate at class level — before STARTED
+    private val filePickerDelegate by lazy {
+        FilePickerDelegate(
+            activity     = this,
+            maxSelection = 5,
+            onResult     = { files -> onFilesPicked(files) }
+        )
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // Force delegate init before Activity is STARTED
+        filePickerDelegate
+    }
+}
 ```
 
-### Open Document Picker
+### Step 2 — Register a result launcher
 
 ```kotlin
-launchDocumentPicker()
+private val filePickerLauncher = FilePicker.registerForResult(this) { files ->
+    // Handle returned files
+    files.forEach { file ->
+        Log.d("FilePicker", "Name: ${file.displayName}, Size: ${file.sizeBytes}")
+    }
+}
 ```
 
-### Open All Files Picker
+### Step 3 — Show the Bottom Sheet Picker
 
 ```kotlin
-launchAllFilePicker()
+binding.btnOpenPicker.setOnClickListener {
+    FilePicker.Builder(this)
+        .launcher(filePickerLauncher)
+        .maxSelection(5)
+        .showBottomSheet(this, filePickerDelegate)
+}
 ```
+
+### Step 4 — Handle the result
+
+```kotlin
+private fun onFilesPicked(files: List<ResultFileItem>) {
+    files.forEach { file ->
+        Log.d("FilePicker", "File: ${file.displayName}")
+        Log.d("FilePicker", "MIME: ${file.mimeType}")
+        Log.d("FilePicker", "Size: ${file.sizeBytes}")
+        Log.d("FilePicker", "URI:  ${file.uriString}")
+    }
+}
+```
+
+### Complete Example
+
+```kotlin
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
+    private val filePickerDelegate by lazy {
+        FilePickerDelegate(
+            activity     = this,
+            maxSelection = 5,
+            onResult     = { files -> onFilesPicked(files) }
+        )
+    }
+
+    private val filePickerLauncher = FilePicker.registerForResult(this) { files ->
+        onFilesPicked(files)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        filePickerDelegate // force init
+
+        binding.btnOpenPicker.setOnClickListener {
+            FilePicker.Builder(this)
+                .launcher(filePickerLauncher)
+                .maxSelection(5)
+                .showBottomSheet(this, filePickerDelegate)
+        }
+    }
+
+    private fun onFilesPicked(files: List<ResultFileItem>) {
+        files.forEach { file ->
+            Log.d("FilePicker", "${file.displayName} — ${file.mimeType}")
+        }
+    }
+}
+```
+
+## ResultFileItem
+
+Each picked file is returned as a `ResultFileItem`:
+
+| Property | Type | Description |
+|---|---|---|
+| `displayName` | `String` | File name with extension |
+| `mimeType` | `String` | MIME type (e.g. `image/jpeg`) |
+| `sizeBytes` | `Long` | File size in bytes |
+| `uriString` | `String` | Content URI as string |
+| `durationMs` | `Long` | Duration in ms (videos only, else 0) |
+| `dateAdded` | `Long` | Unix timestamp when file was added |
 
 ## Permissions
 
@@ -71,7 +167,7 @@ The library follows modern Android storage and media access guidelines. Permissi
 | Feature             | Permission                      |
 |---------------------|---------------------------------|
 | Camera Capture      | `CAMERA`                        |
-| Gallery Selection   | Android Photo Picker            |
+| Gallery Selection   | `READ_MEDIA_IMAGES`, `READ_MEDIA_VIDEO` |
 | Document Selection  | Storage Access Framework (SAF)  |
 | All Files Selection | Storage Access Framework (SAF)  |
 
