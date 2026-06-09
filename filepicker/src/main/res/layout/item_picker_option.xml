@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="64dp"
+    android:paddingHorizontal="14dp"
+    android:paddingVertical="12dp"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- Icon container -->
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivOptionIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:background="@drawable/bg_icon_rounded"
+        android:importantForAccessibility="no"
+        tools:src="@drawable/ic_camera"
+        tools:backgroundTint="#E6F1FB"
+        tools:tint="#185FA5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- Option name -->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvOptionName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="8dp"
+        tools:text="Capture image"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="?attr/colorOnSurface"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/ivOptionIcon"
+        app:layout_constraintEnd_toStartOf="@id/tvBadge"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvOptionDesc" />
+
+    <!-- Option description -->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvOptionDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="1dp"
+        tools:text="Camera · front or rear"
+        style="@style/TextAppearance.Material3.BodySmall"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        app:layout_constraintStart_toEndOf="@id/ivOptionIcon"
+        app:layout_constraintEnd_toStartOf="@id/tvBadge"
+        app:layout_constraintTop_toBottomOf="@id/tvOptionName"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- Optional badge (e.g. "Multi", "New") -->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="3dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        tools:text="Multi"
+        style="@style/TextAppearance.Material3.LabelSmall"
+        android:background="@drawable/bg_badge"
+        app:layout_constraintEnd_toStartOf="@+id/ivChevron"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- Chevron arrow -->
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivChevron"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:src="@drawable/ic_chevron_right"
+        android:importantForAccessibility="no"
+        app:tint="?attr/colorOnSurfaceVariant"
+        android:alpha="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

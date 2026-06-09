@@ -1,8 +1,9 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     id("kotlin-parcelize")
     id("kotlin-kapt")
+    `maven-publish`
 }
 
 android {
@@ -10,43 +11,33 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.vrinsoft.filepicker"
         minSdk = 27
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
+        consumerProguardFiles("consumer-rules.pro")
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+
     buildFeatures {
         viewBinding = true
     }
-}
 
-kotlin {
-    compilerOptions {
-        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
+    // Add this block
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
     }
 }
 
 dependencies {
-    implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
     implementation(libs.material)
     testImplementation(libs.junit)
@@ -55,6 +46,19 @@ dependencies {
 
     // Image loading library for media thumbnails in GalleryActivity
     implementation(libs.coil)
+}
 
-    implementation(project(":filepicker"))
+// Add this block
+publishing {
+    publications {
+        register<MavenPublication>("release") {
+            groupId = "com.github.shivangvrinsoft"
+            artifactId = "filepicker"
+            version = "1.0.0"
+
+            afterEvaluate {
+                from(components["release"])
+            }
+        }
+    }
 }

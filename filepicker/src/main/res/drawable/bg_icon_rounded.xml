@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    drawable/bg_icon_rounded.xml
+    Used as the background for picker option icons in item_picker_option.xml.
+    Tint is applied programmatically per option type using backgroundTintList.
+    Corner radius 10dp gives a rounded-square (squircle-like) look.
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <solid android:color="#FFFFFF" /><!-- overridden by backgroundTintList at runtime -->
+
+    <corners android:radius="10dp" />
+
+</shape>
