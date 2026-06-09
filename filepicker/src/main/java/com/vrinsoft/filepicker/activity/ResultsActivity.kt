@@ -1,5 +1,6 @@
 package com.vrinsoft.filepicker.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -168,5 +169,11 @@ class ResultsActivity : AppCompatActivity() {
     companion object {
         const val KEY_SELECTED_FILES    = "key_selected_files"
         const val RESULT_SELECTED_FILES = "result_selected_files"
+
+        fun newIntent(context: Context, maxSelection: Int = Int.MAX_VALUE): Intent {
+            return Intent(context, ResultsActivity::class.java).apply {
+                putExtra("key_max_selection", maxSelection)
+            }
+        }
     }
 }
